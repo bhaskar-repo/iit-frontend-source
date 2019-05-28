@@ -1,0 +1,40 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+          <nav class="navbar navbar-expand-lg navbar-dark navbar-bg rounded">
+              <a class="navbar-brand" href="#">ISSUE TRACKING TOOL</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav" style="color:white;">
+                  
+                  <div class="col">
+                      <mat-icon>person</mat-icon><mat-label>{{userName | uppercase}}</mat-label>
+                  </div>
+                  <div>
+                      <button mat-raised-button (click)="logOut()">Log Out</button>
+                  </div>
+                </div>
+              </div>
+            </nav>
+            <nav aria-label="breadcrumb" style="height: 5px">
+                <ol class="breadcrumb">
+                  <li><a [routerLink] = "['/api/v1/issues/all']"><mat-icon>home</mat-icon></a></li>
+                  <li class="breadcrumb-item" *ngFor="let item of breadcrumb; let first=first;let last=last" [ngClass]="{'active': last}"><a href="{{item.link}}">{{item.value}}</a></li>
+                </ol>
+              </nav>
+      </div>
+    </div>
+    </div>
+</body>
+
+</html>

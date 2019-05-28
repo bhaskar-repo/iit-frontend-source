@@ -1,0 +1,32 @@
+/*css for sign up component*/
+.cardWidth {
+    width: 500px;
+    height: auto;
+    margin-top: 5vh;
+    background-color: #f2f3f7;
+}
+
+.bg-divider {
+    background-color: white;
+}
+
+.input-full-width {
+    width:90%;
+    margin-top:2vh;
+}
+
+.table-right-col-margin {
+    margin-left: 5vw;
+}
+
+@media only screen and (max-width: 250px) {
+    .cardWidth {
+        width: 150px;
+    }
+}
+
+@media only screen and (max-width: 150px) {
+    .cardWidth {
+        width: 80px;
+    }
+}

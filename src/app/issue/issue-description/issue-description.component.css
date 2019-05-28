@@ -1,0 +1,39 @@
+:root {
+    font-size: 5rem;
+}
+.background {
+    background: #f2f3f7;
+}
+
+.background-watchers {
+    background: #DCDCDC;
+}
+
+.label-title-color {
+    font-weight: bold;
+    opacity: .5;
+}
+
+.label-value {
+    color:#6A5ACD;
+}
+
+.issue-title {
+    font-weight: bold;
+    opacity: 0.8;
+    color: rgb(8, 53, 66);
+}
+
+.wrapper {
+    padding-top:10vh ;
+}
+
+
+.direction {
+    flex-direction: row;
+}
+
+.width {
+    width: auto;
+}
+

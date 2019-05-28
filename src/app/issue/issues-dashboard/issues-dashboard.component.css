@@ -1,0 +1,25 @@
+.table-div-bg {
+    width: 100%;
+    background-color: #dee2e6;
+}
+
+th {
+    font-weight: bold
+}
+
+tr:hover {
+    cursor: pointer;
+}
+
+.wrapper {
+    margin: auto;
+    padding-top:7rem;
+}
+
+@media only screen and (max-width: 330px) {
+    .table-div-bg {
+        width:50%;
+    }
+}
+
+

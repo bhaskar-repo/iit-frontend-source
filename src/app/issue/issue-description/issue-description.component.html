@@ -1,0 +1,118 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+    <app-header [userName]="userName" [breadcrumb] = "breadcrumb"></app-header>
+  <div class="container wrapper">
+    <div class="row ml-1 mr-1" *ngIf="currentIssue">
+      <div class="col-sm-8 background">
+        <div class="row ml-1">
+          <mat-label class="issue-title">Title: {{currentIssue.title | addSpecialCharPipe: '#'}}</mat-label>
+        </div>
+        <div class="row mt-4">
+          <div class="col">
+            <mat-label class="label-title-color">Status:</mat-label>
+          </div>
+          <div class="col label-value">
+            {{currentIssue.status}}
+          </div>
+          <div class="col">
+            <mat-label class="label-title-color">Start Date:</mat-label>
+          </div>
+          <div class="col label-value">
+            {{currentIssue.createdOn | date: 'dd/M/yy h:mm'}}
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <mat-label class="label-title-color">Assignee:</mat-label>
+          </div>
+          <div class="col label-value">
+            <mat-label>{{currentIssue.userName}}</mat-label>
+          </div>
+          <div class="col">
+            <mat-label class="label-title-color">Module Name:</mat-label>
+          </div>
+          <div class="col label-value">
+            <mat-label>{{currentIssue.moduleName}}</mat-label>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col">
+            <mat-label class="label-title-color">Priority:</mat-label>
+          </div>
+          <div class="col label-value">
+            <mat-label>{{currentIssue.priority}}</mat-label>
+          </div>
+          <div class="col">
+            <mat-label class="label-title-color">Reported By:</mat-label>
+          </div>
+          <div class="col label-value">
+            <mat-label>{{currentIssue.reporter}}</mat-label>
+          </div>
+        </div>
+        <mat-divider class="mt-4"></mat-divider>
+        <div class="row mt-2">
+          <div class="col">
+            <mat-label class="label-title-color">Description:</mat-label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col label-value">
+            <mat-label [innerHtml]="currentIssue.description"></mat-label>
+          </div>
+        </div>
+        <div class="row" style="margin-top:15vh">
+          <div class="col">
+            <mat-label class="label-title-color">Attachment:</mat-label>
+          </div>
+          <div class="col label-value">
+            <mat-label *ngIf="isFilePresent"><mat-icon>cloud_download</mat-icon><a href="{{currentIssue.fileLocation}}">{{currentIssue.fileName}}</a></mat-label>
+            <mat-label *ngIf="!isFilePresent">No file found</mat-label>
+          </div>
+        </div>
+        <mat-divider class="mt-4"></mat-divider>
+        <div class="row mt-2">
+          <div class="col">
+            <mat-label class="label-title-color">Comments:</mat-label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-label *ngIf="isComment">{{currentIssue.comments}}</mat-label>
+            <mat-label *ngIf="!isComment" class="label-value">No Comments provided</mat-label>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col d-flex justify-content-end">
+            <button mat-raised-button color="primary" (click)=navigateToEdit(currentIssue.issueId)>Edit</button>
+          </div>
+          <div class="col-8"> 
+
+            </div>
+          <div class="col d-flex justify-content-end">
+              <mat-slide-toggle class="example-margin" name="isWatch" color="primary" [(ngModel)]="currentIssue.isWatch" labelPosition="before"
+              (change) = addToWatchersList(currentIssue)>
+            {{ currentIssue.isWatch ? 'Unwatch' : 'Watch' }}
+          </mat-slide-toggle>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="col-sm-4 background-watchers">
+        <mat-label>List of Wacthers</mat-label>
+        <mat-list role="list" style="height:300px;overflow:auto">
+          <mat-list-item role="listitem" *ngFor="let watcher of currentIssue.watchers">{{watcher.userName}}</mat-list-item>
+          
+        </mat-list>
+            
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

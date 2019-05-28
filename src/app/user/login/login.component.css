@@ -1,0 +1,54 @@
+/* css for login component*/
+.cardWidth {
+    width: 400px;
+    height: auto;
+    margin-top: 20vh;
+    background-color: #f2f3f7;
+}
+
+.login-title {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.bg-divider {
+    background-color: white;
+}
+
+@media (min-width: 576px) {
+    .cardWidth {
+        width: 400px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .cardWidth {
+        width: 300px;
+    }
+}
+
+@media (max-width: 300px) {
+    .cardWidth {
+        width: 200px;
+    }
+}
+
+@media (max-width: 200px) {
+    .cardWidth {
+        width: 100px;
+    }
+}
+
+@media (max-width: 100px) {
+    .cardWidth {
+        width: 50px;
+    }
+}
+
+@media (max-width: 50px) {
+    .cardWidth {
+        width: 10px;
+    }
+}
+
+

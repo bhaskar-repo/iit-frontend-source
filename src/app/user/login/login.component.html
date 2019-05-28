@@ -1,0 +1,57 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width ,initial-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col d-flex flex-wrap justify-content-center">
+        <mat-card class="cardWidth">
+          <mat-card-header>
+            <mat-card-title class="login-title">Log in to Continue</mat-card-title>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <form #loginForm="ngForm">
+            <mat-form-field appearance="outline" style="width:100%;margin-top:2vh;text-decoration-color: white">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Email" name="email"  [(ngModel)]="email" #emailId="ngModel" required>
+              <mat-error *ngIf="emailId.invalid">You must enter a value</mat-error>
+              <mat-icon matPrefix>person</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" style="width:100%;margin-top:0.5vh">
+              <mat-label>Password</mat-label>
+              <input matInput placeholder="Password" name="password" type="password" [(ngModel)]="password" #userPass="ngModel" required>
+              <mat-error *ngIf="userPass.invalid">You must enter a value</mat-error>
+              <mat-icon matPrefix>lock</mat-icon>
+            </mat-form-field>
+          
+          <div class="row">
+            <div class="col">
+                <mat-checkbox name="termsFlag" [(ngModel)]="termsFlag" #termsFlagAttr="ngModel" class="example-margin" required><button class="btn btn-link" (click) = "openDialog()">T&C</button></mat-checkbox>
+                <mat-error *ngIf="termsFlagAttr.invalid">accept t&c</mat-error>
+            </div>
+            <div class="col">
+                <button class="btn btn-link" [routerLink]="['/api/v1/users/reset']">forgot password?</button>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <button mat-raised-button color="primary" [disabled]="loginForm.form.invalid" (click)="logIn()">Login</button>
+              </div>
+              <div class="col">
+                  <mat-label style="color:blue">existing user?</mat-label>
+              </div>
+              <div class="col">
+                  <a href="#" [routerLink]="['/api/v1/users/signup']">Sign Up</a>
+              </div>
+            </div>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

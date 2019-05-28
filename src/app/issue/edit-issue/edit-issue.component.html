@@ -1,0 +1,116 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width , initial-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+  <app-header [userName]="userName" [breadcrumb]="breadcrumb"></app-header>
+  <div class="container">
+    <div class="row" *ngIf="currentIssue">
+      <div class="col background wrapper ml-3 mr-3">
+        <form #editForm="ngForm" name="descForm" enctype="multipart/form-data">
+          <div class="form-row">
+            <div class="form-group col">
+              <mat-form-field>
+                <input name="title" matInput placeholder="Title" [(ngModel)]="currentIssue.title" #titletArr="ngModel"
+                  required>
+                  <mat-error *ngIf="titletArr.invalid">Title is required</mat-error>
+              </mat-form-field>
+              
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <mat-form-field>
+                <mat-select name="assignee" placeholder="Assignee" name="userId" [(ngModel)]="currentIssue.assignee"
+                  #assigneeAttr="ngModel" required>
+                  <mat-option *ngFor="let assignee of assignees" [value]="assignee.userId" (click)=onChangeAssignee(assignee)>{{assignee.userName}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="assigneeAttr.invalid">Assignee is required</mat-error>
+              </mat-form-field>
+              
+            </div>
+            <div class="form-group col">
+              <mat-form-field>
+                <mat-select placeholder="Status" name="status" [(ngModel)]="currentIssue.status" #statusAtttr="ngModel"
+                  required>
+                  <mat-option *ngFor="let status of allStatus" [value]="status">{{status}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="statusAtttr.invalid">Status is required</mat-error>
+              </mat-form-field>
+             
+            </div>
+            <div class="form-group col">
+              <mat-form-field>
+                <mat-select placeholder="Module Name" name="moduleId" [(ngModel)]="currentIssue.moduleName"
+                  #moduleAtttr="ngModel" required>
+                  <mat-option *ngFor="let module of modules" [value]="module">{{module}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="moduleAtttr.invalid">Module Name is required</mat-error>
+              </mat-form-field>
+              
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-4">
+              <mat-form-field>
+                <mat-select name="priority" placeholder="Priority" name="priority" [(ngModel)]="currentIssue.priority"
+                  #priorityAttr="ngModel" required>
+                  <mat-option *ngFor="let priority of priorities" [value]="priority">{{priority}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="priorityAttr.invalid">Priority is required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="form-group col-8">
+              <mat-form-field style="width:50%">
+                <textarea matInput placeholder="Comments" name="comments" [(ngModel)]="currentIssue.comments"
+                  #commnetsAttr="ngModel"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+         
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="ck">Description *</label>
+              <ckeditor [editor]="editor" (ready)="onReady($event)" [(ngModel)]="currentIssue.description" required
+                #desc="ngModel" name="description"></ckeditor>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <input type="file" name="fileName" single ng2FileSelect [uploader]="uploader">
+            </div>
+            <div class="form-group col" *ngIf="uploader.queue.length > 0" style="width: 30%">
+                <mat-progress-bar mode="determinate" value="{{uploader.queue[0].progress}}"></mat-progress-bar>
+            </div>
+            
+          </div>
+          <div class="form-row">
+              <div class="form-group col" *ngIf="uploader.queue.length > 0">
+                  <button mat-raised-button color="primary" (click)="uploader.queue[0].upload()">upload</button>
+                </div>
+    
+                <div class="form-group col" *ngIf="uploader.queue.length > 0">
+                  <button class="btn btn-danger" color="primary" (click)="uploader.queue[0].remove()">remove</button>
+                </div>
+                
+                <div class="form-group col-8">
+
+                </div>
+                
+                <div class="form-group col d-flex justify-content-end">
+                  <button mat-raised-button color="primary" (click)="editIssue()"
+                    [disabled]="editForm.form.invalid || uploader.isUploading">Submit</button>
+                </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

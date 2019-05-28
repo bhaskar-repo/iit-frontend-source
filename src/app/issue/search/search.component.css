@@ -1,0 +1,17 @@
+.table-div-bg {
+    width: 100%;
+    background-color: #dee2e6;
+}
+
+th {
+    font-weight: bold
+}
+
+tr:hover {
+    cursor: pointer;
+}
+
+.wrapper {
+    margin: auto;
+    top:10vh;
+}

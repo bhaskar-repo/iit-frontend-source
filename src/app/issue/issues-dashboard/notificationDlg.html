@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  <p>Parameters (<b>{{data.auditString}}</b>) modified by <b>{{data.userName}}</b> to see the changes click on ok</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="navigateToDescView(data.issueId)">Ok</button>
+</div>

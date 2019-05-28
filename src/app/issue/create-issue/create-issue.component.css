@@ -1,0 +1,45 @@
+table {
+    background-color: #dee2e6;
+}
+
+.table-width {
+    width: 100%;
+}
+
+.wrapper {
+    margin: auto;
+    top:10vh;
+}
+
+
+.backgroundGradient {
+    background: #f2f3f7;
+}
+
+.ck-editor__editable_decoupled {
+    min-height: 500px !important;
+}
+
+@media only screen and (max-width: 450px) and (min-width: 200px) {
+    .table-width {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 200px) {
+    .table-width {
+        width: 150px;
+    }
+}
+
+@media only screen and (max-width: 150px) {
+    .table-width {
+        width: 100px;
+    }
+}
+
+@media only screen and (max-width: 100px) {
+    .table-width {
+        width: 70px;
+    }
+}

@@ -1,0 +1,99 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width ,initial-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col d-flex justify-content-center">
+        <mat-card class="cardWidth">
+          <mat-card-header>
+            <mat-card-title style="font-weight:bold">Sign Up</mat-card-title>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <form #signUpForm="ngForm">
+            <div class="form-row">
+              <div class="form-group col">
+                <mat-form-field class="input-full-width">
+                  <mat-label>First Name</mat-label>
+                  <input matInput placeholder="First Name" name="firstName" [(ngModel)]="firstName" #firstNameAttr="ngModel"
+                    required>
+                  <mat-error *ngIf="firstNameAttr.invalid">You must enter a value</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="form-group col">
+                <mat-form-field class="input-full-width">
+                  <mat-label>Last Name</mat-label>
+                  <input matInput placeholder="LastName" name="lastName" [(ngModel)]="lastName" #lastNameAttr="ngModel"
+                    required>
+                  <mat-error *ngIf="lastNameAttr.invalid">You must enter a value</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col">
+                <mat-form-field class="input-full-width">
+                  <mat-label>Email</mat-label>
+                  <input matInput placeholder="Email" name="email" [(ngModel)]="email" #emailAttr="ngModel" required>
+                  <mat-error *ngIf="emailAttr.invalid">You must enter a value</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col">
+                <mat-form-field hintLabel="max 10 digits(optional)" class="input-full-width">
+                  <mat-label>Mobile Number</mat-label>
+                  <input matInput name="mobileNumber" placeholder="Mobile Number" [(ngModel)]="mobileNumber" type="number"
+                    onkeydown="if(this.value.length == 10 && event.keyCode!=8) return false;" min="1000000000" max="9999999999">
+                </mat-form-field>
+              </div>
+              <div class="form-group col">
+                <mat-form-field class="input-full-width">
+                  <mat-select placeholder="Select" name="roleId" [(ngModel)]="roleId" #roleIdAttr="ngModel" required>
+                    <mat-option *ngFor="let role of userRoles" [value]="role.roleId">{{role.roleName}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="roleIdAttr.invalid">You must enter a value</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col">
+                <mat-form-field class="input-full-width">
+                  <mat-label>Password</mat-label>
+                  <input matInput placeholder="Password" name="password" type="password" [(ngModel)]="password"
+                    #passwordAttr="ngModel" required>
+                  <mat-error *ngIf="passwordAttr.invalid">You must enter a value</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="form-group col">
+                <mat-form-field class="input-full-width">
+                  <mat-label>Confirm Password</mat-label>
+                  <input matInput placeholder="Confirm Password" name="confirmPass" type="password"
+                    [(ngModel)]="confirmPassword" #confirmPasswordAttr="ngModel" required>
+                  <mat-error *ngIf="confirmPasswordAttr.invalid">You must enter a value</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col">
+                <mat-card-actions>
+                  <button mat-raised-button color="primary" [disabled]="signUpForm.form.invalid" (click)="signUp()">Sign
+                    Up</button>
+                </mat-card-actions>
+              </div>
+              <div class="form-group col d-flex justify-content-end">
+                <mat-card-actions>
+                  <button class="btn btn-secondary" mat-raised-button (click)="goBack()">Back</button>
+                </mat-card-actions>
+              </div>
+            </div>
+          </form>      
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
